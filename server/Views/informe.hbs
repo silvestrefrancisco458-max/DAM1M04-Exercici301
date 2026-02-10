@@ -1,0 +1,21 @@
+{{> header}}
+{{> menu}}
+
+<h1>{{titulo}}</h1>
+<p>Esta es la pagina de {{titulo}}</p>
+<table border="1"> 
+    <tr> 
+        <th>ID</th> 
+        <th>Nombre</th> 
+    </tr>
+
+    {{#each datos}}
+    <tr> 
+        <td>{{this.id}}</td> 
+        <td>{{this.name}}</td> 
+    </tr>
+    {{/each}}
+</table>
+
+
+{{> footer}}
