@@ -12,8 +12,13 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
+hbs.registerHelper("lte", function (a, b) {
+  return a <= b;
+});
+
 // Servir archivos estáticos
 app.use(express.static(path.join(__dirname, "../public")));
+
 
 // Ruta principal 
 app.get("/", (req, res) => { 
@@ -46,3 +51,11 @@ app.get("/site", (req, res) => {
 
 // Para El Host
 app.listen(3000, () => console.log("http://localhost:3000"));
+
+// PARA ACTIVAR.
+// npm run dev
+// si da error Pon esto.
+// chmod +x node_modules/.bin/nodemon
+// mv server/Views server/views
+// Y LUEGO
+// npm run dev
