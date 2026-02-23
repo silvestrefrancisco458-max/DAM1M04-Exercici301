@@ -1,8 +1,10 @@
 const express = require("express");
 const hbs = require("hbs");
 const path = require("path");
-const cities = require("./data/cities.json");
-const countrie = require("./data/countrie.json");
+
+// DATOS DE JSON
+const cities = require("./data/cities.json").cities;
+const countries = require("./data/countries.json").countries;
 const site = require("./data/site.json");
 
 const app = express();
@@ -12,6 +14,7 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
+// HELPER LTE
 hbs.registerHelper("lte", function (a, b) {
   return a <= b;
 });
@@ -19,33 +22,17 @@ hbs.registerHelper("lte", function (a, b) {
 // Servir archivos estáticos
 app.use(express.static(path.join(__dirname, "../public")));
 
-
 // Ruta principal 
 app.get("/", (req, res) => { 
-    res.render("index"); 
+    res.render("index", site); 
 });
 
-// MOVIES
-app.get("/movies", (req, res) => { 
-    res.render("informe", { 
-        titulo: "Listado de Películas", 
-        datos: cities 
-    }); 
-});
-
- // Customers
-app.get("/customers", (req, res) => {
+// Ruta de informe
+app.get("/infoeme", (req, res) => {
     res.render("informe", {
-        titulo: "Listado de Cliente",
-        datos: countrie
-    });
-});
-
-// Ruta Site
-app.get("/site", (req, res) => {
-    res.render("informe", {
-        titulo: "Informacion del Sitio",
-        datos: site
+        title: site.title,
+        cities,
+        countries
     });
 });
 

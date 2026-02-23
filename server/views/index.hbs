@@ -1,6 +1,16 @@
 {{> header}}
-{{> menu}}
-<h1>Hola desde CASA</h1>
-<p>Esto ya es una plantilla de prueva</p>
+
+<h1>{{title}}</h1>
+<h2>{{subtitle}}</h2>
+
+<p>{{notice}}</p>
+
+{{#if showWarning}}
+<div class="avís">
+    Atenció: aquesta és una advertència important.
+</div>
+{{/if}}
+
+<p>Aquesta pàgina mostra dades provinents de un sol fitxer JSON.</p>
 
 {{> footer}}

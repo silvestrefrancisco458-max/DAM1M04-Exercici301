@@ -1,21 +1,52 @@
 {{> header}}
-{{> menu}}
 
-<h1>{{titulo}}</h1>
-<p>Esta es la pagina de {{titulo}}</p>
-<table border="1"> 
-    <tr> 
-        <th>ID</th> 
-        <th>Nombre</th> 
+<h1>{{title}}</h1>
+<p>Aquesta pàgina combina dades de 3 fitxers JSON.</p>
+
+<table class="taula-ciutats">
+    <tr>
+        <th>Ciutat</th>
+        <th>País</th>
+        <th>Població</th>
+        <th>Zona</th>
+        <th>Mida</th>
     </tr>
 
-    {{#each datos}}
-    <tr> 
-        <td>{{this.id}}</td> 
-        <td>{{this.name}}</td> 
+    {{#each cities}}
+    <tr>
+        <td>{{name}}</td>
+
+        {{!-- lookup per convertir codi de país en nom complet --}}
+        <td>{{lookup ../countries country}}</td>
+
+        {{!-- població o text alternatiu --}}
+        <td>
+            {{#if population}}
+                {{population}}
+            {{else}}
+                <em>Sense dades</em>
+            {{/if}}
+        </td>
+
+        {{!-- costanera o interior --}}
+        <td>
+            {{#if coastal}}
+                🌊 Costanera
+            {{else}}
+                Interior
+            {{/if}}
+        </td>
+
+        {{!-- mida segons helper lte --}}
+        <td>
+            {{#if (lte population 800000)}}
+                <span class="badge petita">Petita</span>
+            {{else}}
+                <span class="badge gran">Gran</span>
+            {{/if}}
+        </td>
     </tr>
     {{/each}}
 </table>
-
 
 {{> footer}}
