@@ -1,52 +1,21 @@
 {{> header}}
 
-<h1>{{title}}</h1>
-<p>Aquesta pàgina combina dades de 3 fitxers JSON.</p>
+<h2>{{subtitle}}</h2>
 
-<table class="taula-ciutats">
-    <tr>
-        <th>Ciutat</th>
-        <th>País</th>
-        <th>Població</th>
-        <th>Zona</th>
-        <th>Mida</th>
-    </tr>
-
-    {{#each cities}}
-    <tr>
-        <td>{{name}}</td>
-
-        {{!-- lookup per convertir codi de país en nom complet --}}
-        <td>{{lookup ../countries country}}</td>
-
-        {{!-- població o text alternatiu --}}
-        <td>
-            {{#if population}}
-                {{population}}
-            {{else}}
-                <em>Sense dades</em>
-            {{/if}}
-        </td>
-
-        {{!-- costanera o interior --}}
-        <td>
-            {{#if coastal}}
-                🌊 Costanera
-            {{else}}
-                Interior
-            {{/if}}
-        </td>
-
-        {{!-- mida segons helper lte --}}
-        <td>
-            {{#if (lte population 800000)}}
-                <span class="badge petita">Petita</span>
-            {{else}}
-                <span class="badge gran">Gran</span>
-            {{/if}}
-        </td>
-    </tr>
-    {{/each}}
-</table>
+<ul>
+  {{#each cities}}
+    <li>
+      <strong>{{name}}</strong>
+      ({{lookup ../countrie country}}) —
+      {{#if population}}
+        {{population}} habitants —
+        {{#if coastal}}🌊 Costanera{{else}}Interior{{/if}} —
+        {{#if (lte population 800000)}}Petita{{else}}Gran{{/if}}
+      {{else}}
+        <em>Població desconeguda</em>
+      {{/if}}
+    </li>
+  {{/each}}
+</ul>
 
 {{> footer}}

@@ -4,7 +4,7 @@ const path = require("path");
 
 // DATOS DE JSON
 const cities = require("./data/cities.json").cities;
-const countries = require("./data/countries.json").countries;
+const countries = require("./data/countrie.json").countrie;
 const site = require("./data/site.json");
 
 const app = express();
@@ -28,12 +28,13 @@ app.get("/", (req, res) => {
 });
 
 // Ruta de informe
-app.get("/infoeme", (req, res) => {
-    res.render("informe", {
-        title: site.title,
-        cities,
-        countries
-    });
+app.get("/informe", (req, res) => { 
+    res.render("informe", { 
+        title: site.title, 
+        subtitle: site.subtitle, 
+        cities, 
+        countries 
+    }); 
 });
 
 // Para El Host
