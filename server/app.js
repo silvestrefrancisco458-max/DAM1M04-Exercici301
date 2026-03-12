@@ -3,6 +3,7 @@ const hbs = require("hbs");
 const path = require("path");
 
 // DATOS DE JSON
+// LEE EL JSON
 const cities = require("./data/cities.json").cities;
 const countries = require("./data/countrie.json").countrie;
 const site = require("./data/site.json");
